@@ -1,6 +1,8 @@
 import { Github, Linkedin, Mail, FileText, MapPin, ArrowUpRight, Code2, Trophy } from 'lucide-react';
 import { SOCIAL_LINKS } from '../../data/links';
 import { scrollToSection } from '../../hooks/useLenis';
+import { useAppDispatch } from '../../hooks/redux';
+import { setResumePreviewOpen } from '../../store/slices/uiSlice';
 
 const ICON_MAP = { Github, Linkedin, Mail, FileText, Code2, Trophy };
 
@@ -16,6 +18,7 @@ const STACK = ['React 19', 'Vite', 'Tailwind', 'Framer Motion', 'R3F', 'Redux To
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const dispatch = useAppDispatch();
 
   return (
     <footer className="relative mt-32 border-t border-border">
@@ -93,13 +96,32 @@ export function Footer() {
             <ul className="space-y-2">
               {SOCIAL_LINKS.map((link) => {
                 const Icon = ICON_MAP[link.icon] || Mail;
+                const linkClass =
+                  'group inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-text';
+
+                if (link.label === 'Resume') {
+                  return (
+                    <li key={link.label}>
+                      <button
+                        type="button"
+                        onClick={() => dispatch(setResumePreviewOpen(true))}
+                        className={linkClass}
+                      >
+                        <Icon className="h-3.5 w-3.5" />
+                        {link.label}
+                        <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
+                      </button>
+                    </li>
+                  );
+                }
+
                 return (
                   <li key={link.label}>
                     <a
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 text-sm text-text-muted transition-colors hover:text-text"
+                      className={linkClass}
                     >
                       <Icon className="h-3.5 w-3.5" />
                       {link.label}

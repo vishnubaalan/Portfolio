@@ -22,6 +22,7 @@ import {
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setStatus, setError, reset } from '../../store/slices/contactSlice';
+import { setResumePreviewOpen } from '../../store/slices/uiSlice';
 import { EMAILJS } from '../../constants';
 import { SOCIAL_LINKS, CONTACT_EMAIL, GMAIL_COMPOSE_URL } from '../../data/links';
 import { cn } from '../../utils/cn';
@@ -134,13 +135,30 @@ export function Contact() {
           <div className="space-y-2">
             {SOCIAL_LINKS.filter((l) => l.label !== 'Email').map((link) => {
               const Icon = ICON_MAP[link.icon] || Mail;
+              const linkClass =
+                'flex w-full items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-left text-sm text-text-muted transition-colors hover:border-primary hover:text-text';
+
+              if (link.label === 'Resume') {
+                return (
+                  <button
+                    key={link.label}
+                    type="button"
+                    onClick={() => dispatch(setResumePreviewOpen(true))}
+                    className={linkClass}
+                  >
+                    <Icon className="h-4 w-4 text-primary" />
+                    <span>{link.label}</span>
+                  </button>
+                );
+              }
+
               return (
                 <a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text-muted transition-colors hover:border-primary hover:text-text"
+                  className={linkClass}
                 >
                   <Icon className="h-4 w-4 text-primary" />
                   <span>{link.label}</span>

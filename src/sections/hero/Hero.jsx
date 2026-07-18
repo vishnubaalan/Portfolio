@@ -1,10 +1,12 @@
 import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Mail } from 'lucide-react';
+import { ArrowRight, FileText, Mail } from 'lucide-react';
 import { MagneticButton } from '../../components/common/MagneticButton';
 import { useTypingCycle } from '../../hooks/useTypingCycle';
-import { TYPING_WORDS, RESUME_URL } from '../../constants';
+import { TYPING_WORDS } from '../../constants';
 import { scrollToSection } from '../../hooks/useLenis';
+import { useAppDispatch } from '../../hooks/redux';
+import { setResumePreviewOpen } from '../../store/slices/uiSlice';
 import { HeroBackground } from './HeroBackground';
 
 const AICore = lazy(() =>
@@ -28,6 +30,7 @@ const item = {
 
 export function Hero() {
   const typed = useTypingCycle(TYPING_WORDS);
+  const dispatch = useAppDispatch();
 
   return (
     <section id="hero" className="relative flex min-h-[100svh] items-center overflow-hidden pt-24">
@@ -70,13 +73,10 @@ export function Hero() {
               <ArrowRight className="h-4 w-4" />
             </MagneticButton>
             <MagneticButton
-              as="a"
-              href={RESUME_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => dispatch(setResumePreviewOpen(true))}
               className="glass text-text hover:border-primary"
             >
-              <Download className="h-4 w-4" />
+              <FileText className="h-4 w-4" />
               Resume
             </MagneticButton>
             <MagneticButton

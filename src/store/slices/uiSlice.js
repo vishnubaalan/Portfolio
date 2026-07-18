@@ -4,6 +4,7 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState: {
     paletteOpen: false,
+    resumePreviewOpen: false,
     scrollProgress: 0,
     activeSection: 'hero',
   },
@@ -13,6 +14,9 @@ const uiSlice = createSlice({
     },
     togglePalette: (state) => {
       state.paletteOpen = !state.paletteOpen;
+    },
+    setResumePreviewOpen: (state, action) => {
+      state.resumePreviewOpen = action.payload;
     },
     setScrollProgress: (state, action) => {
       state.scrollProgress = action.payload;
@@ -26,6 +30,7 @@ const uiSlice = createSlice({
 export const {
   setPaletteOpen,
   togglePalette,
+  setResumePreviewOpen,
   setScrollProgress,
   setActiveSection,
 } = uiSlice.actions;

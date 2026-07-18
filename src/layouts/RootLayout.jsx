@@ -6,6 +6,7 @@ import { NavBar } from '../components/common/NavBar';
 import { Footer } from '../components/common/Footer';
 import { BackToTop } from '../components/common/BackToTop';
 import { CommandPalette } from '../components/palette/CommandPalette';
+import { ResumePreviewModal } from '../components/common/ResumePreviewModal';
 
 export function RootLayout({ children }) {
   useThemeSync();
@@ -17,6 +18,7 @@ export function RootLayout({ children }) {
       <ScrollProgress />
       <NavBar />
       <CommandPalette />
+      <ResumePreviewModal />
       <main>{children}</main>
       <Footer />
       <BackToTop />

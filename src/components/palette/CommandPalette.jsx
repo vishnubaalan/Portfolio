@@ -21,7 +21,7 @@ import {
   Monitor,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { setPaletteOpen } from '../../store/slices/uiSlice';
+import { setPaletteOpen, setResumePreviewOpen } from '../../store/slices/uiSlice';
 import { setMode } from '../../store/slices/themeSlice';
 import { scrollToSection } from '../../hooks/useLenis';
 import { SOCIAL_LINKS } from '../../data/links';
@@ -163,13 +163,20 @@ export function CommandPalette() {
                     >
                       {SOCIAL_LINKS.map((link) => {
                         const Icon = ICON_MAP[link.icon] || Mail;
+                        const handleSelect =
+                          link.label === 'Resume'
+                            ? () => {
+                                close();
+                                dispatch(setResumePreviewOpen(true));
+                              }
+                            : () => {
+                                window.open(link.href, '_blank', 'noopener,noreferrer');
+                                close();
+                              };
                         return (
                           <Command.Item
                             key={link.label}
-                            onSelect={() => {
-                              window.open(link.href, '_blank', 'noopener,noreferrer');
-                              close();
-                            }}
+                            onSelect={handleSelect}
                             className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm text-text-muted aria-selected:bg-surface-2 aria-selected:text-text"
                           >
                             <Icon className="h-4 w-4" />

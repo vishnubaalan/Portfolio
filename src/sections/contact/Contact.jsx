@@ -5,12 +5,25 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { Send, Check, AlertCircle, Loader2, Github, Linkedin, Mail } from 'lucide-react';
+import {
+  Send,
+  Check,
+  AlertCircle,
+  Loader2,
+  Github,
+  Linkedin,
+  Mail,
+  FileText,
+  Code2,
+  Trophy,
+  Phone,
+  AtSign,
+} from 'lucide-react';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setStatus, setError, reset } from '../../store/slices/contactSlice';
 import { EMAILJS } from '../../constants';
-import { SOCIAL_LINKS } from '../../data/links';
+import { SOCIAL_LINKS, CONTACT_EMAIL, GMAIL_COMPOSE_URL } from '../../data/links';
 import { cn } from '../../utils/cn';
 
 const schema = z.object({
@@ -20,7 +33,7 @@ const schema = z.object({
   website: z.string().max(0).optional(), // honeypot
 });
 
-const ICON_MAP = { Github, Linkedin, Mail };
+const ICON_MAP = { Github, Linkedin, Mail, FileText, Code2, Trophy };
 
 export function Contact() {
   const dispatch = useAppDispatch();
@@ -78,8 +91,40 @@ export function Contact() {
             description="Open to opportunities, interesting projects, and thoughtful conversations."
             className="mb-8"
           />
+
+          <div className="mb-6 grid gap-3 sm:grid-cols-2">
+            <a
+              href={GMAIL_COMPOSE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 rounded-xl border border-border bg-surface p-4 transition-colors hover:border-primary"
+            >
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary/15">
+                <AtSign className="h-4 w-4" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-mono text-[10px] uppercase tracking-wider text-text-subtle">
+                  Email
+                </p>
+                <p className="truncate text-sm font-medium text-text">{CONTACT_EMAIL}</p>
+              </div>
+            </a>
+
+            <div className="flex items-center gap-3 rounded-xl border border-border bg-surface p-4">
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-accent/15 text-accent">
+                <Phone className="h-4 w-4" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-mono text-[10px] uppercase tracking-wider text-text-subtle">
+                  Phone
+                </p>
+                <p className="select-all text-sm font-medium text-text">+91 90921 53915</p>
+              </div>
+            </div>
+          </div>
+
           <div className="space-y-2">
-            {SOCIAL_LINKS.map((link) => {
+            {SOCIAL_LINKS.filter((l) => l.label !== 'Email').map((link) => {
               const Icon = ICON_MAP[link.icon] || Mail;
               return (
                 <a
@@ -161,8 +206,13 @@ export function Contact() {
           {showFallback && (
             <p className="text-xs text-text-subtle">
               Or email me directly at{' '}
-              <a href="mailto:vishnubaalan@example.com" className="text-primary underline">
-                vishnubaalan@example.com
+              <a
+                href={GMAIL_COMPOSE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline"
+              >
+                {CONTACT_EMAIL}
               </a>
             </p>
           )}

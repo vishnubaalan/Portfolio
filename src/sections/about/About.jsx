@@ -13,11 +13,37 @@ export function About() {
   return (
     <section id="about" className="relative py-24 sm:py-32">
       <div className="section-container">
-        <SectionHeader
-          eyebrow="About Me"
-          title="My story so far"
-          description="I enjoy building modern web applications that are fast, scalable, and user-friendly. My interests extend beyond frontend into AI engineering, automation, and intelligent agent systems. I'm currently expanding into backend, networking, and system architecture."
-        />
+        <div className="mb-16 flex flex-col items-center gap-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+            className="relative"
+          >
+            <div
+              aria-hidden="true"
+              className="absolute -inset-3 rounded-full bg-gradient-to-tr from-primary/30 via-accent/20 to-transparent blur-2xl"
+            />
+            <img
+              src="/profile-pic.png"
+              alt="Vishnu Baalan"
+              width="180"
+              height="180"
+              loading="lazy"
+              decoding="async"
+              className="relative h-40 w-40 rounded-full border-2 border-border object-cover shadow-elevated sm:h-44 sm:w-44"
+            />
+          </motion.div>
+
+          <SectionHeader
+            eyebrow="About Me"
+            title="My story so far"
+            description="I enjoy building modern web applications that are fast, scalable, and user-friendly. My interests extend beyond frontend into AI engineering, automation, and intelligent agent systems. I'm currently expanding into backend, networking, and system architecture."
+            align="center"
+            className="mb-0"
+          />
+        </div>
 
         <div className="relative mx-auto max-w-3xl">
           <div className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-border to-transparent md:left-1/2 md:-ml-px" />

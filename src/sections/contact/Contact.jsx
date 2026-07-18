@@ -86,11 +86,19 @@ export function Contact() {
       <div className="section-container grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div>
           <SectionHeader
-            eyebrow="Get In Touch"
+            eyebrow="Freelance · Available"
             title="Let's build something"
-            description="Open to opportunities, interesting projects, and thoughtful conversations."
-            className="mb-8"
+            description="Freelancer available for new projects — free to talk ideas, timelines, and collaborations."
+            className="mb-6"
           />
+
+          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1.5 text-xs font-medium text-success">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+            </span>
+            Open to freelance projects
+          </div>
 
           <div className="mb-6 grid gap-3 sm:grid-cols-2">
             <a
@@ -159,7 +167,7 @@ export function Contact() {
             label="Message"
             error={errors.message}
             {...register('message')}
-            placeholder="Tell me a bit about your idea, role, or question."
+            placeholder="Tell me about your project, scope, timeline, or just say hi."
             rows={5}
           />
           <input type="text" tabIndex={-1} autoComplete="off" className="hidden" {...register('website')} />

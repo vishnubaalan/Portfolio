@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>Vishnu Baalan — Software Engineer & AI Enthusiast</title>
+    <meta
+      name="description"
+      content="Portfolio of Vishnu Baalan — Software Engineer building modern fullstack web applications and intelligent AI systems."
+    />
+    <meta name="author" content="Vishnu Baalan" />
+    <meta name="theme-color" content="#0A0D1C" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F8F9FC" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vishnu Baalan — Software Engineer & AI Enthusiast" />
+    <meta property="og:description" content="Building modern web applications and intelligent AI systems." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var system = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          var theme = stored === 'light' || stored === 'dark' ? stored : system;
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

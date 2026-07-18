@@ -1,14 +1,16 @@
 /** @type {import('../types').SkillCategory[]} */
 export const SKILL_CATEGORIES = [
   {
+    name: 'Languages',
+    color: 'primary',
+    items: ['JavaScript', 'Java 17 · 21', 'HTML5', 'CSS3'],
+  },
+  {
     name: 'Frontend',
     color: 'primary',
     items: [
       'React',
-      'TypeScript',
-      'JavaScript',
-      'HTML5',
-      'CSS3',
+      'Next.js',
       'TailwindCSS',
       'shadcn/ui',
       'Framer Motion',
@@ -17,19 +19,24 @@ export const SKILL_CATEGORIES = [
     ],
   },
   {
-    name: 'State Management',
+    name: 'Backend & Data',
     color: 'accent',
-    items: ['Redux', 'Zustand', 'Context API'],
+    items: ['Spring Boot', 'REST APIs', 'Supabase', 'SQL'],
   },
   {
-    name: 'Cloud',
+    name: 'State Management',
     color: 'info',
-    items: ['AWS Amplify', 'AWS Cognito', 'Authentication'],
+    items: ['Redux Toolkit', 'Context API'],
+  },
+  {
+    name: 'Cloud & Deploy',
+    color: 'info',
+    items: ['AWS Amplify', 'AWS Cognito', 'AWS S3', 'AWS CloudFront', 'Vercel', 'Netlify'],
   },
   {
     name: 'UI Libraries',
     color: 'primary',
-    items: ['Material UI', 'Lucide React', 'Konva', 'React Konva', 'Milkdown'],
+    items: ['Radix UI', 'Material UI', 'Lucide React', 'Konva', 'Milkdown'],
   },
   {
     name: 'Tools',
@@ -39,6 +46,6 @@ export const SKILL_CATEGORIES = [
   {
     name: 'Currently Learning',
     color: 'warning',
-    items: ['Java', 'Spring Boot', 'Networking', 'System Design', 'AI Engineering', 'GOAP', 'LLMs'],
+    items: ['System Design', 'Networking', 'AI Engineering', 'GOAP', 'LLMs'],
   },
 ];

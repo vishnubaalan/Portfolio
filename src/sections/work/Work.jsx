@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Building2, Calendar } from 'lucide-react';
+import { Building2, Calendar, Briefcase } from 'lucide-react';
 import { SectionHeader } from '../../components/common/SectionHeader';
 import { WORK } from '../../data/work';
 import { cn } from '../../utils/cn';
@@ -13,6 +13,13 @@ export function Work() {
           title="Where I've engineered"
           description="Internships and full-time roles — the places I've learned how to ship in production."
         />
+
+        <div className="mb-10 flex justify-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs text-accent">
+            <Briefcase className="h-3 w-3" />
+            Currently engineering @ Breezeware
+          </span>
+        </div>
 
         <ol className="relative mx-auto max-w-3xl">
           <div className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-border to-transparent md:left-6" />

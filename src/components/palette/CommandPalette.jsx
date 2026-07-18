@@ -14,6 +14,8 @@ import {
   Linkedin,
   Mail,
   FileText,
+  Code2,
+  Trophy,
   Moon,
   Sun,
   Monitor,
@@ -34,7 +36,7 @@ const SECTION_ITEMS = [
   { id: 'contact', label: 'Contact', icon: Mail },
 ];
 
-const ICON_MAP = { Github, Linkedin, Mail, FileText };
+const ICON_MAP = { Github, Linkedin, Mail, FileText, Code2, Trophy };
 
 export function CommandPalette() {
   const open = useAppSelector((s) => s.ui.paletteOpen);

@@ -16,12 +16,13 @@ export function Projects() {
   const filtered = filter === 'all' ? PROJECTS : PROJECTS.filter((p) => p.category === filter);
 
   return (
-    <section id="projects" className="relative py-24 sm:py-32">
+    <section id="projects" aria-labelledby="projects-heading" className="relative py-24 sm:py-32">
       <div className="section-container">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <SectionHeader
             eyebrow="Selected Work"
             title="Featured Projects"
+            titleId="projects-heading"
             description="A slice of things I've shipped and things I'm currently building."
             className="mb-0"
           />

@@ -4,11 +4,12 @@ import { SKILL_CATEGORIES } from '../../data/skills';
 
 export function Skills() {
   return (
-    <section id="skills" className="relative py-24 sm:py-32">
+    <section id="skills" aria-labelledby="skills-heading" className="relative py-24 sm:py-32">
       <div className="section-container">
         <SectionHeader
           eyebrow="Toolkit"
           title="Skills & Tools"
+          titleId="skills-heading"
           description="What I reach for daily, and what I'm actively deepening."
         />
 

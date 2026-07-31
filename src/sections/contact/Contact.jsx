@@ -83,12 +83,13 @@ export function Contact() {
   const busy = status === 'sending';
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
+    <section id="contact" aria-labelledby="contact-heading" className="relative py-24 sm:py-32">
       <div className="section-container grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr]">
         <div>
           <SectionHeader
             eyebrow="Freelance · Available"
             title="Let's build something"
+            titleId="contact-heading"
             description="Freelancer available for new projects — free to talk ideas, timelines, and collaborations."
             className="mb-6"
           />

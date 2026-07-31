@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { cn } from '../../utils/cn';
 
-export function SectionHeader({ eyebrow, title, description, align = 'left', className }) {
+export function SectionHeader({ eyebrow, title, titleId, description, align = 'left', className }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -19,7 +19,10 @@ export function SectionHeader({ eyebrow, title, description, align = 'left', cla
           {eyebrow}
         </span>
       )}
-      <h2 className="text-3xl font-semibold tracking-tight text-text sm:text-4xl md:text-5xl text-gradient">
+      <h2
+        id={titleId}
+        className="text-3xl font-semibold tracking-tight text-text sm:text-4xl md:text-5xl text-gradient"
+      >
         {title}
       </h2>
       {description && (

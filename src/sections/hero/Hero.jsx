@@ -33,7 +33,11 @@ export function Hero() {
   const dispatch = useAppDispatch();
 
   return (
-    <section id="hero" className="relative flex min-h-[100svh] items-center overflow-hidden pt-24">
+    <section
+      id="hero"
+      aria-labelledby="hero-heading"
+      className="relative flex min-h-[100svh] items-center overflow-hidden pt-24"
+    >
       <HeroBackground />
 
       <div className="section-container relative z-10 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.15fr_1fr]">
@@ -46,7 +50,7 @@ export function Hero() {
             Available for opportunities
           </motion.div>
 
-          <motion.h1 variants={item} className="text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+          <motion.h1 id="hero-heading" variants={item} className="text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
             <span className="block text-text-muted text-2xl sm:text-3xl mb-3">Hi <span className="inline-block">👋</span> I'm</span>
             <span className="text-gradient">Vishnu Baalan</span>
           </motion.h1>

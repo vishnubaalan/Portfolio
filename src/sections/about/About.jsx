@@ -11,7 +11,7 @@ const STATUS_STYLES = {
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" aria-labelledby="about-heading" className="relative py-24 sm:py-32">
       <div className="section-container">
         <div className="mb-16 flex flex-col items-center gap-8">
           <motion.div
@@ -27,7 +27,7 @@ export function About() {
             />
             <img
               src="/profile-pic.png"
-              alt="Vishnu Baalan"
+              alt="Vishnu Baalan, software engineer and fullstack developer"
               width="180"
               height="180"
               loading="lazy"
@@ -39,6 +39,7 @@ export function About() {
           <SectionHeader
             eyebrow="About Me"
             title="My story so far"
+            titleId="about-heading"
             description="I enjoy building modern web applications that are fast, scalable, and user-friendly. My interests extend beyond frontend into AI engineering, automation, and intelligent agent systems. I'm currently expanding into backend, networking, and system architecture."
             align="center"
             className="mb-0"

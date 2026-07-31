@@ -6,11 +6,12 @@ import { cn } from '../../utils/cn';
 
 export function Work() {
   return (
-    <section id="work" className="relative py-24 sm:py-32">
+    <section id="work" aria-labelledby="work-heading" className="relative py-24 sm:py-32">
       <div className="section-container">
         <SectionHeader
           eyebrow="Work Experience"
           title="Where I've engineered"
+          titleId="work-heading"
           description="Internships and full-time roles — the places I've learned how to ship in production."
         />
 

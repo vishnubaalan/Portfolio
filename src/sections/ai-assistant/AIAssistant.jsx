@@ -14,7 +14,7 @@ const FEATURES = [
 
 export function AIAssistant() {
   return (
-    <section id="ai-assistant" className="relative py-24 sm:py-32 overflow-hidden">
+    <section id="ai-assistant" aria-labelledby="ai-assistant-heading" className="relative py-24 sm:py-32 overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute inset-0"
@@ -40,6 +40,7 @@ export function AIAssistant() {
             <SectionHeader
               eyebrow="Flagship"
               title="Personal AI Assistant"
+              titleId="ai-assistant-heading"
               description="A Jarvis-inspired personal AI companion for productivity, automation, coding, and daily workflows — built around Goal-Oriented Action Planning (GOAP) so it can reason and act, not just chat."
               className="mb-8"
             />

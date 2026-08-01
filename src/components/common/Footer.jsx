@@ -47,14 +47,14 @@ export function Footer() {
               <span className="flex flex-col leading-tight">
                 <span className="text-sm font-semibold text-text">Vishnu Baalan</span>
                 <span className="font-mono text-[10px] uppercase tracking-wider text-text-subtle">
-                  Software Engineer
+                  React + Spring Boot Developer
                 </span>
               </span>
             </button>
 
             <p className="max-w-sm text-sm leading-relaxed text-text-muted">
-              Software Engineer building modern fullstack products and personal AI systems.
-              Currently at Breezeware · aiming to ship a Jarvis-style assistant.
+              I build React + Spring Boot admin dashboards, CRM systems and internal business
+              tools for startups and small businesses. Currently a Software Engineer at Breezeware.
             </p>
 
             <div className="flex items-center gap-2 text-xs text-text-subtle">
@@ -62,7 +62,7 @@ export function Footer() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
               </span>
-              Open to conversations
+              Open to freelance projects
               <span className="mx-1 text-text-subtle/50">·</span>
               <MapPin className="h-3 w-3" />
               Coimbatore, India

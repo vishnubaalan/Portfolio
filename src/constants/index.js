@@ -8,13 +8,29 @@ export const SECTIONS = [
   { id: 'contact', label: 'Contact' },
 ];
 
+// Rendered after "I build" in the hero — every entry has to read as a thing a
+// client would pay for, not a job title.
 export const TYPING_WORDS = [
-  'Software Engineer',
-  'Fullstack Developer',
-  'AI Agent Builder',
-  'Systems Thinker',
-  'Continuous Learner',
+  'Admin Dashboards',
+  'Internal Business Tools',
+  'CRM Systems',
+  'Analytics Dashboards',
+  'User Management Panels',
 ];
+
+// The niche, stated the same way everywhere: hero chips, contact section, pitch.
+export const OFFERINGS = [
+  'Admin Dashboards',
+  'Internal Business Tools',
+  'CRM Systems',
+  'Analytics Dashboards',
+  'User Management Panels',
+];
+
+export const TAGLINE = 'React + Spring Boot Admin Dashboard Developer';
+
+export const PITCH =
+  'I build fast, secure React + Spring Boot admin dashboards and internal business tools for startups and small businesses.';
 
 // Drop the latest resume PDF into /public/resume.pdf and this link will just work.
 export const RESUME_URL = '/resume.pdf';

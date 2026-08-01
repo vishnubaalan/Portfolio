@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, FileText, Mail } from 'lucide-react';
 import { MagneticButton } from '../../components/common/MagneticButton';
 import { useTypingCycle } from '../../hooks/useTypingCycle';
-import { TYPING_WORDS } from '../../constants';
+import { TYPING_WORDS, TAGLINE, PITCH } from '../../constants';
 import { scrollToSection } from '../../hooks/useLenis';
 import { useAppDispatch } from '../../hooks/redux';
 import { setResumePreviewOpen } from '../../store/slices/uiSlice';
@@ -47,7 +47,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
             </span>
-            Available for opportunities
+            Available for freelance projects
           </motion.div>
 
           <motion.h1 id="hero-heading" variants={item} className="text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
@@ -55,8 +55,12 @@ export function Hero() {
             <span className="text-gradient">Vishnu Baalan</span>
           </motion.h1>
 
+          <motion.p variants={item} className="text-lg sm:text-xl font-semibold text-text">
+            {TAGLINE}
+          </motion.p>
+
           <motion.p variants={item} className="text-xl sm:text-2xl text-text-muted font-medium">
-            I'm a{' '}
+            I build{' '}
             <span className="text-text-inverse inline-block min-w-[10ch] rounded-md bg-primary px-2 py-0.5">
               {typed}
               <span className="ml-0.5 inline-block w-[2px] animate-pulse bg-text-inverse align-middle" style={{ height: '1em' }} />
@@ -64,8 +68,7 @@ export function Hero() {
           </motion.p>
 
           <motion.p variants={item} className="max-w-xl text-base text-text-muted leading-relaxed">
-            Software Engineer · Fullstack Developer · AI Enthusiast.
-            Building intelligent systems and fast, elegant interfaces end-to-end.
+            {PITCH}
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap items-center gap-3 pt-2">

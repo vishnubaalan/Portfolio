@@ -27,7 +27,7 @@ export function About() {
             />
             <img
               src="/profile-pic.png"
-              alt="Vishnu Baalan, software engineer and fullstack developer"
+              alt="Vishnu Baalan, React and Spring Boot admin dashboard developer"
               width="180"
               height="180"
               loading="lazy"
@@ -40,7 +40,7 @@ export function About() {
             eyebrow="About Me"
             title="My story so far"
             titleId="about-heading"
-            description="I enjoy building modern web applications that are fast, scalable, and user-friendly. My interests extend beyond frontend into AI engineering, automation, and intelligent agent systems. I'm currently expanding into backend, networking, and system architecture."
+            description="I'm a React and Spring Boot developer who specializes in responsive admin dashboards and internal business tools — the systems companies use to manage users, reports, analytics and daily operations. I focus on clean UI, secure backend APIs, and solutions that stay easy to maintain as the business grows."
             align="center"
             className="mb-0"
           />

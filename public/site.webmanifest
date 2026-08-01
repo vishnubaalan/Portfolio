@@ -1,7 +1,7 @@
 {
-  "name": "Vishnu Baalan — Software Engineer",
+  "name": "Vishnu Baalan · Dashboards",
   "short_name": "Vishnu Baalan",
-  "description": "Portfolio of Vishnu Baalan, a fullstack software engineer working with React, Spring Boot and AI systems.",
+  "description": "Portfolio of Vishnu Baalan, a React and Spring Boot developer building admin dashboards, CRM systems and internal business tools.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

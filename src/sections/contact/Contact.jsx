@@ -23,7 +23,7 @@ import { SectionHeader } from '../../components/common/SectionHeader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setStatus, setError, reset } from '../../store/slices/contactSlice';
 import { setResumePreviewOpen } from '../../store/slices/uiSlice';
-import { EMAILJS } from '../../constants';
+import { EMAILJS, OFFERINGS } from '../../constants';
 import { SOCIAL_LINKS, CONTACT_EMAIL, GMAIL_COMPOSE_URL } from '../../data/links';
 import { cn } from '../../utils/cn';
 
@@ -90,16 +90,32 @@ export function Contact() {
             eyebrow="Freelance · Available"
             title="Let's build something"
             titleId="contact-heading"
-            description="Freelancer available for new projects — free to talk ideas, timelines, and collaborations."
+            description="Available for freelance work — React + Spring Boot admin dashboards, internal tools and CRM systems for startups and small businesses. Send over the scope and I'll come back with a timeline."
             className="mb-6"
           />
 
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1.5 text-xs font-medium text-success">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1.5 text-xs font-medium text-success">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
             </span>
             Open to freelance projects
+          </div>
+
+          <div className="mb-8">
+            <p className="mb-3 font-mono text-[10px] uppercase tracking-wider text-text-subtle">
+              What I build
+            </p>
+            <ul className="flex flex-wrap gap-2">
+              {OFFERINGS.map((offering) => (
+                <li
+                  key={offering}
+                  className="rounded-full border border-border bg-surface px-3 py-1 text-xs text-text-muted"
+                >
+                  {offering}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="mb-6 grid gap-3 sm:grid-cols-2">

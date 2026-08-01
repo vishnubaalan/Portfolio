@@ -23,7 +23,7 @@ export function Projects() {
             eyebrow="Selected Work"
             title="Featured Projects"
             titleId="projects-heading"
-            description="A slice of things I've shipped and things I'm currently building."
+            description="Admin dashboards, internal tools and fullstack apps I've shipped — plus what I'm building now."
             className="mb-0"
           />
           <div className="flex items-center gap-1 rounded-full border border-border bg-surface/50 p-1">

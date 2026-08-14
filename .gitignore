@@ -17,6 +17,9 @@ dist-ssr
 .env.*
 !.env.example
 
+# Planning / internal documentation — kept local, not published
+docs/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

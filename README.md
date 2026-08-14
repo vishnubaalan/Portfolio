@@ -154,7 +154,7 @@ src/
 └── utils/                   cn, chatStorage, chatActions
 
 vite-plugin-api-dev.js       runs api/* handlers on the dev server
-docs/                        planning documents and résumé sources
+docs/                        planning documents and résumé sources (gitignored)
 ```
 
 ---
@@ -265,15 +265,12 @@ with the chat adding a fifth: quota exhausted.
 
 ## Docs
 
-`docs/` holds the planning history:
+Planning happens in versioned markdown under `docs/` — build plans, the AI chat plan with its
+decisions and verification log, SEO notes and references.
 
-| File | What it is |
-|---|---|
-| `ai-chat-plan.v2.md` | The AI chat plan, decisions, implementation log and verification results |
-| `ai-chat-plan.v1.md` | Superseded first draft, kept for history |
-| `build-plan.v1.md` | Original portfolio build plan |
-| `seo.md`, `seo-optimization-v1.md` | SEO notes |
-| `references.md` | Design and inspiration references |
+**`docs/` is gitignored and stays local**, so it is not part of a clone. It is documented here
+only so the workflow is clear: features get a plan file before they get code, and the plan is
+updated with what actually shipped.
 
 ---
 
@@ -288,7 +285,9 @@ with the chat adding a fifth: quota exhausted.
 - **Added** SEO pass: canonical tags, Open Graph image, sitemap, robots, PWA manifest
 - **Added** in-app résumé preview modal
 - **Changed** `BackToTop` repositioned to stack above the chat launcher
-- **Changed** planning docs published under `docs/`
+- **Changed** `constants/index.js` guards `import.meta.env` so the Edge proxy can import the
+  data modules outside Vite
+- **Removed** `docs/` from version control — planning documents are kept local
 
 ---
 

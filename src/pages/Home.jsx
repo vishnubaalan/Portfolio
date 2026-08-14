@@ -4,6 +4,7 @@ import { Skills } from '../sections/skills/Skills';
 import { Projects } from '../sections/projects/Projects';
 import { AIAssistant } from '../sections/ai-assistant/AIAssistant';
 import { Work } from '../sections/work/Work';
+import { Faq } from '../sections/faq/Faq';
 import { Contact } from '../sections/contact/Contact';
 
 export function Home() {
@@ -15,6 +16,7 @@ export function Home() {
       <Projects />
       <AIAssistant />
       <Work />
+      <Faq />
       <Contact />
     </>
   );

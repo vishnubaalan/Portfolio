@@ -21,6 +21,7 @@ import { AVAILABILITY } from './persona';
  * @property {string} a          The offline answer
  * @property {string[]} keywords Lowercase tokens used for matching
  * @property {boolean} [chip]    Show as a suggestion chip
+ * @property {boolean} [public]  Render in the on-page FAQ section (see `PUBLIC_FAQ`)
  */
 
 /** @type {FaqEntry[]} */
@@ -37,6 +38,7 @@ export const FAQ = [
     a: 'Admin dashboards, internal business tools, CRM systems, analytics dashboards and user management panels — fast, secure, and built for startups and small businesses. React on the front, Spring Boot and SQL behind it.',
     keywords: ['build', 'do', 'make', 'work on', 'services', 'offer'],
     chip: true,
+    public: true,
   },
   {
     id: 'stack',
@@ -44,6 +46,7 @@ export const FAQ = [
     a: 'React, JavaScript, Tailwind, shadcn/ui, Redux Toolkit and Framer Motion on the frontend. Java 17/21 with Spring Boot, REST APIs and SQL on the backend. AWS — Amplify, Cognito, S3, CloudFront — for deployment.',
     keywords: ['stack', 'tech', 'technologies', 'tools', 'languages', 'framework'],
     chip: true,
+    public: true,
   },
   {
     id: 'drive',
@@ -69,12 +72,14 @@ export const FAQ = [
     q: 'Where do you work now?',
     a: "I'm a Software Engineer at Breezeware, remote — I converted from a 10-month internship into the full-time role. I work across production React frontends and Spring Boot APIs on client and internal products.",
     keywords: ['where', 'work', 'company', 'employer', 'breezeware', 'job', 'currently'],
+    public: true,
   },
   {
     id: 'experience',
     q: 'How much experience do you have?',
     a: 'Professionally: Breezeware since Aug 2025 — 10 months as an intern, then full-time from Jun 2026. Before that, a 5-month fullstack internship at DNYX Business Solution, 6 months at ELGi Equipments on a Digital Twin dashboard, and a GenAI micro-internship with IBM SkillsBuild.',
     keywords: ['experience', 'years', 'how long', 'senior', 'junior', 'background'],
+    public: true,
   },
   {
     id: 'available',
@@ -82,12 +87,14 @@ export const FAQ = [
     a: `${AVAILABILITY} Easiest way in is email — ${CONTACT_EMAIL}.`,
     keywords: ['available', 'hire', 'hiring', 'freelance', 'job', 'opportunity', 'contract', 'open to'],
     chip: true,
+    public: true,
   },
   {
     id: 'frontend-backend',
     q: 'Frontend or backend?',
     a: "Both, genuinely — that's the point of the fullstack path. Frontend is where I have the most polish (React, accessibility, motion, design systems), and Spring Boot is where I do the API and data work. Dashboards need both done well.",
     keywords: ['frontend', 'backend', 'fullstack', 'prefer', 'stronger', 'better at'],
+    public: true,
   },
   {
     id: 'learning',
@@ -112,11 +119,22 @@ export const FAQ = [
     q: 'Where are you based?',
     a: "Coimbatore, Tamil Nadu, India — and I've worked remote across every role so far, so timezone-friendly remote work is normal for me.",
     keywords: ['based', 'location', 'where are you', 'city', 'country', 'remote', 'timezone'],
+    public: true,
   },
 ];
 
 /** Chips shown in the empty state, the teaser and the quota wall. */
 export const CHIP_QUESTIONS = FAQ.filter((f) => f.chip).map((f) => f.q);
+
+/**
+ * The subset rendered as real HTML by the on-page FAQ section.
+ *
+ * Everything else in `FAQ` only ever reaches the DOM if a visitor opens the
+ * chat panel, which means crawlers never see it. These entries answer the
+ * questions a client or recruiter actually searches for, so they earn their
+ * place in the document itself.
+ */
+export const PUBLIC_FAQ = FAQ.filter((f) => f.public);
 
 const STOP_WORDS = new Set([
   'what', 'whats', 'is', 'are', 'the', 'a', 'an', 'do', 'does', 'you', 'your',

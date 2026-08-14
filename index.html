@@ -49,7 +49,7 @@
             "@type": "Person",
             "@id": "https://vishnubaalan.vercel.app/#person",
             "name": "Vishnu Baalan",
-            "alternateName": "Vishnu Baalan B",
+            "alternateName": ["Vishnu Baalan B", "Vishnubaalan", "Vishnu Balan"],
             "url": "https://vishnubaalan.vercel.app/",
             "mainEntityOfPage": { "@id": "https://vishnubaalan.vercel.app/#webpage" },
             "image": "https://vishnubaalan.vercel.app/profile-pic.png",
@@ -121,6 +121,22 @@
               "addressRegion": "Tamil Nadu",
               "addressCountry": "IN"
             },
+            "knowsLanguage": [
+              { "@type": "Language", "name": "English" },
+              { "@type": "Language", "name": "Tamil" }
+            ],
+            "areaServed": [
+              { "@type": "Country", "name": "India" },
+              { "@type": "Place", "name": "Worldwide" }
+            ],
+            "workLocation": {
+              "@type": "Place",
+              "name": "Remote"
+            },
+            "seeks": {
+              "@type": "Demand",
+              "name": "Freelance React and Spring Boot admin dashboard projects"
+            },
             "knowsAbout": [
               "Admin Dashboards",
               "CRM Systems",
@@ -188,55 +204,11 @@
     <div id="root"></div>
 
     <!--
-      Crawlers that do not execute JavaScript (and visitors with JS disabled) see
-      an empty #root otherwise. This mirrors the page's real content so the site
-      still says who it is without a renderer.
+      #root is not empty in the deployed build: `npm run build` runs
+      scripts/prerender.mjs, which renders the homepage to static markup and
+      injects it here. That replaced the hand-maintained <noscript> mirror that
+      used to live at this spot — see docs/seo.md.
     -->
-    <noscript>
-      <div style="max-width: 68ch; margin: 0 auto; padding: 3rem 1.5rem; font-family: system-ui, sans-serif; line-height: 1.6">
-        <h1>Vishnu Baalan — React &amp; Spring Boot Admin Dashboard Developer</h1>
-        <p>
-          I build fast, secure React + Spring Boot admin dashboards and internal business tools
-          for startups and small businesses. Currently a Software Engineer at Breezeware in
-          Coimbatore, India, and available for freelance projects.
-        </p>
-        <h2>What I build</h2>
-        <ul>
-          <li>React + Spring Boot admin dashboards</li>
-          <li>Internal business tools</li>
-          <li>CRM systems</li>
-          <li>Analytics dashboards</li>
-          <li>User management panels</li>
-        </ul>
-        <h2>Skills</h2>
-        <p>
-          JavaScript, Java, React, Next.js, TailwindCSS, Redux Toolkit, Spring Boot, REST APIs,
-          SQL, Supabase, AWS (S3, Cognito, Amplify, CloudFront), Git.
-        </p>
-        <h2>Projects</h2>
-        <ul>
-          <li>Drive — a Google Drive-style cloud storage app (React, Spring Boot, SQL, AWS).</li>
-          <li>Learning Management System — admin, learner and distributor flows (React, Spring Boot).</li>
-          <li>Animal Tracking System — live location, history logs and searchable records.</li>
-          <li>Netflix Clone — carousels, hover previews and responsive video tiles.</li>
-          <li>Spotify Clone — playlists, audio player and a fluid now-playing bar.</li>
-        </ul>
-        <h2>Experience</h2>
-        <ul>
-          <li>Software Engineer, Breezeware — Jun 2026 to present.</li>
-          <li>Software Engineer Intern, Breezeware — Aug 2025 to May 2026.</li>
-          <li>Full Stack Developer Intern, DNYX Business Solution — Jul 2024 to Nov 2024.</li>
-          <li>Web Developer Intern, ELGi Equipments Ltd — Feb 2024 to Jul 2024.</li>
-        </ul>
-        <h2>Contact</h2>
-        <ul>
-          <li><a href="mailto:vishnubaalan.b@gmail.com">vishnubaalan.b@gmail.com</a></li>
-          <li><a href="https://github.com/vishnubaalan">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/vishnubaalan/">LinkedIn</a></li>
-          <li><a href="/resume.pdf">Resume (PDF)</a></li>
-        </ul>
-      </div>
-    </noscript>
 
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Throwaway SSR bundle from scripts/prerender.mjs (removed on success)
+.prerender-tmp
+
 # Env files (keep .env.example committed for reference only)
 .env
 .env.*

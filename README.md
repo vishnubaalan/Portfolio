@@ -1,6 +1,6 @@
 # Vishnu Baalan — Portfolio
 
-**Version 1.0.0** · Live at **[vishnubaalan.vercel.app](https://vishnubaalan.vercel.app/)**
+**Version 1.1.0** · Live at **[vishnubaalan.vercel.app](https://vishnubaalan.vercel.app/)**
 
 A single-page portfolio for a React + Spring Boot admin dashboard developer, built with
 React 19, Vite and Tailwind — and shipping **"Ask Vishnu AI"**, a Gemini-backed assistant
@@ -28,7 +28,7 @@ and capped at 10 questions per visitor per day.
 
 **The site**
 
-- Seven sections: Hero, About, Skills, Projects, AI Assistant, Work, Contact
+- Eight sections: Hero, About, Skills, Projects, AI Assistant, Work, FAQ, Contact
 - Smooth scrolling via Lenis, scroll-linked progress bar and active-section tracking
 - 3D animated hero core (`@react-three/fiber` + `drei`), lazy-loaded so it never blocks paint
 - Command palette (`⌘K` / `Ctrl+K`) for navigation, theme switching, links and AI questions
@@ -36,7 +36,8 @@ and capped at 10 questions per visitor per day.
 - In-app résumé preview modal with download, instead of a raw PDF link
 - Contact form wired to EmailJS
 - Motion throughout with Framer Motion, all of it respecting `prefers-reduced-motion`
-- SEO: canonical tags, Open Graph image, `sitemap.xml`, `robots.txt`, PWA manifest
+- SEO: build-time prerendering, `Person` structured data, canonical tags, Open Graph image,
+  `sitemap.xml`, `robots.txt`, PWA manifest
 
 **Ask Vishnu AI**
 
@@ -147,13 +148,16 @@ src/
 ├── hooks/                   useAIChat, useLenis, useThemeSync, useMediaQuery, …
 ├── layouts/RootLayout.jsx
 ├── pages/Home.jsx
-├── sections/                hero · about · skills · projects · ai-assistant · work · contact
+├── sections/                hero · about · skills · projects · ai-assistant · work · faq · contact
 ├── services/aiChatService.js
 ├── store/                   Redux slices: theme · ui · contact · chat
 ├── styles/                  tokens.css · globals.css
+├── prerender.jsx            build-time render entry (never shipped to the browser)
 └── utils/                   cn, chatStorage, chatActions
 
+scripts/prerender.mjs        post-build: injects static markup into dist/index.html
 vite-plugin-api-dev.js       runs api/* handlers on the dev server
+vercel.json                  asset caching and security headers
 docs/                        planning documents and résumé sources (gitignored)
 ```
 
@@ -236,12 +240,33 @@ curl -s https://vishnubaalan.vercel.app/assets/index-*.js | grep -c "AQ\."
 | Command | Description |
 |---|---|
 | `npm run dev` | Dev server on :5173, including `/api/chat` |
-| `npm run build` | Production build to `dist/` |
+| `npm run build` | Production build to `dist/`, then prerenders the homepage into it |
 | `npm run preview` | Serve the built output (no API routes) |
 | `npm run lint` | ESLint across the project |
 
-> On some Node versions ESLint's default `stylish` formatter throws
-> `util.styleText is not a function`. Use `npx eslint . -f json` as a workaround.
+> Both `build` and `lint` require **Node 20+**. On Node 18 they fail with
+> `util.styleText is not a function` — that is the Node version, not the project.
+
+### Prerendering
+
+`npm run build` runs `scripts/prerender.mjs` after Vite. It does an SSR build of
+`src/prerender.jsx` into a throwaway directory, renders the app to a string, and injects the
+markup into `#root` in `dist/index.html`. Googlebot executes JS and would have found the
+content anyway; Bing, LinkedIn, Slack and the LLM crawlers largely do not.
+
+Two constraints this puts on the codebase:
+
+- **Anything touching `window` during render breaks the build.** Keep it inside `useEffect` or
+  behind a `typeof window` guard, the way `themeSlice` and `chatStorage` already do.
+- **`main.jsx` uses `createRoot`, not `hydrateRoot`** — React discards the prerendered markup
+  and renders fresh, which makes hydration mismatches impossible by construction.
+
+Verify a deploy actually shipped it:
+
+```bash
+curl -s https://vishnubaalan.vercel.app/ | grep -c hero-heading
+#  1                             ← 0 means the prerender step did not run
+```
 
 ---
 
@@ -275,6 +300,24 @@ updated with what actually shipped.
 ---
 
 ## Changelog
+
+### 1.1.0 — 2026-08-15
+
+SEO pass, planned in `docs/seo-optimization-v2.md`.
+
+- **Added** build-time prerendering (`scripts/prerender.mjs`, `src/prerender.jsx`) — the
+  homepage now ships as static markup in `dist/index.html` instead of an empty `#root`
+- **Added** an on-page FAQ section rendering the `public: true` entries from `data/ai/faq.js`,
+  copy that previously only existed inside the chat panel and was invisible to crawlers
+- **Added** `vercel.json` — immutable caching on `/assets/*`, HSTS, `nosniff`,
+  `Referrer-Policy`, `Permissions-Policy`
+- **Added** freelance and identity structured data: `alternateName` covering the real spellings
+  of the name, plus `areaServed`, `workLocation`, `seeks` and `knowsLanguage`
+- **Added** `engines.node: ">=20"`, matching what Vite 8 and ESLint 10 actually require
+- **Changed** profile image to a 360px WebP with a PNG fallback — 365 KB → 16 KB
+- **Changed** `robots.txt` to disallow `/api/`
+- **Removed** the hand-maintained `<noscript>` content mirror, now redundant and a source of
+  duplicate text on the prerendered page
 
 ### 1.0.0 — 2026-08-15
 

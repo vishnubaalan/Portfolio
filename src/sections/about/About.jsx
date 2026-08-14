@@ -25,15 +25,20 @@ export function About() {
               aria-hidden="true"
               className="absolute -inset-3 rounded-full bg-gradient-to-tr from-primary/30 via-accent/20 to-transparent blur-2xl"
             />
-            <img
-              src="/profile-pic.png"
-              alt="Vishnu Baalan, React and Spring Boot admin dashboard developer"
-              width="180"
-              height="180"
-              loading="lazy"
-              decoding="async"
-              className="relative h-40 w-40 rounded-full border-2 border-border object-cover shadow-elevated sm:h-44 sm:w-44"
-            />
+            {/* 360px sources for a 180px slot — retina without paying for the
+                512px original, which stays around as the JSON-LD entity image. */}
+            <picture>
+              <source srcSet="/profile-pic.webp" type="image/webp" />
+              <img
+                src="/profile-pic-360.png"
+                alt="Vishnu Baalan, React and Spring Boot admin dashboard developer"
+                width="180"
+                height="180"
+                loading="lazy"
+                decoding="async"
+                className="relative h-40 w-40 rounded-full border-2 border-border object-cover shadow-elevated sm:h-44 sm:w-44"
+              />
+            </picture>
           </motion.div>
 
           <SectionHeader

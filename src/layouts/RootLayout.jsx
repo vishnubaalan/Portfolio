@@ -7,6 +7,8 @@ import { Footer } from '../components/common/Footer';
 import { BackToTop } from '../components/common/BackToTop';
 import { CommandPalette } from '../components/palette/CommandPalette';
 import { ResumePreviewModal } from '../components/common/ResumePreviewModal';
+import { AIChatPanel } from '../components/ai/AIChatPanel';
+import { AIChatLauncher } from '../components/ai/AIChatLauncher';
 
 export function RootLayout({ children }) {
   useThemeSync();
@@ -21,6 +23,8 @@ export function RootLayout({ children }) {
       <ResumePreviewModal />
       <main>{children}</main>
       <Footer />
+      <AIChatPanel />
+      <AIChatLauncher />
       <BackToTop />
     </div>
   );

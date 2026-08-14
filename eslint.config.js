@@ -18,4 +18,12 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    // Server-side and build-time code: the /api/chat proxy and Vite config run
+    // in Node, not the browser.
+    files: ['api/**/*.js', 'vite.config.js', 'vite-plugin-api-dev.js'],
+    languageOptions: {
+      globals: { ...globals.node, ...globals.serviceworker },
+    },
+  },
 ])

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mic, Zap, Brain, Workflow, Layers, Cpu, Bell } from 'lucide-react';
 import { SectionHeader } from '../../components/common/SectionHeader';
+import { AIChatTeaser } from '../../components/ai/AIChatTeaser';
 
 const FEATURES = [
   { icon: Mic, label: 'Voice Interaction' },
@@ -60,6 +61,8 @@ export function AIAssistant() {
                 </motion.div>
               ))}
             </div>
+
+            <AIChatTeaser />
           </div>
 
           <motion.div

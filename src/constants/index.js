@@ -37,8 +37,12 @@ export const RESUME_URL = '/resume.pdf';
 
 export const GITHUB_USERNAME = 'vishnubaalan';
 
+// `import.meta.env` is undefined outside Vite — the /api/chat proxy imports this
+// module (via the AI knowledge base) and runs in a plain ESM runtime.
+const env = import.meta.env || {};
+
 export const EMAILJS = {
-  serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
-  templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
-  publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '',
+  serviceId: env.VITE_EMAILJS_SERVICE_ID || '',
+  templateId: env.VITE_EMAILJS_TEMPLATE_ID || '',
+  publicKey: env.VITE_EMAILJS_PUBLIC_KEY || '',
 };

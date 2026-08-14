@@ -6,6 +6,7 @@ import { scrollToSection } from "../../hooks/useLenis";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { togglePalette } from "../../store/slices/uiSlice";
 import { ThemeToggle } from "./ThemeToggle";
+import { AIChatLauncher } from "../ai/AIChatLauncher";
 import { cn } from "../../utils/cn";
 
 export function NavBar() {
@@ -67,6 +68,7 @@ export function NavBar() {
           </nav>
 
           <div className="flex items-center gap-2">
+            <AIChatLauncher variant="pill" />
             <button
               onClick={() => dispatch(togglePalette())}
               className="hidden items-center gap-1.5 rounded-full border border-border bg-surface/60 px-2.5 py-1 text-xs text-text-muted transition-colors hover:text-text sm:flex"

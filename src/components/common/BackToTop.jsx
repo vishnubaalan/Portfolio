@@ -9,6 +9,7 @@ export function BackToTop() {
 
   return (
     <AnimatePresence>
+      {/* Stacked above the chat launcher, which owns bottom-6 right-6. */}
       {visible && (
         <motion.button
           initial={{ opacity: 0, y: 20, scale: 0.8 }}
@@ -16,7 +17,7 @@ export function BackToTop() {
           exit={{ opacity: 0, y: 20, scale: 0.8 }}
           onClick={() => scrollToSection('hero')}
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full glass text-text hover:text-primary transition-colors shadow-elevated"
+          className="fixed bottom-[5.5rem] right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full glass text-text hover:text-primary transition-colors shadow-elevated"
         >
           <ArrowUp className="h-4 w-4" />
         </motion.button>

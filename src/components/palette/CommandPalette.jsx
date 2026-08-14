@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Command } from 'cmdk';
@@ -16,12 +16,15 @@ import {
   FileText,
   Code2,
   Trophy,
+  MessageCircle,
   Moon,
   Sun,
   Monitor,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setPaletteOpen, setResumePreviewOpen } from '../../store/slices/uiSlice';
+import { askAI } from '../../store/slices/chatSlice';
+import { CHIP_QUESTIONS } from '../../data/ai/faq';
 import { setMode } from '../../store/slices/themeSlice';
 import { scrollToSection } from '../../hooks/useLenis';
 import { SOCIAL_LINKS } from '../../data/links';
@@ -41,6 +44,7 @@ const ICON_MAP = { Github, Linkedin, Mail, FileText, Code2, Trophy };
 export function CommandPalette() {
   const open = useAppSelector((s) => s.ui.paletteOpen);
   const dispatch = useAppDispatch();
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const handler = (e) => {
@@ -105,6 +109,8 @@ export function CommandPalette() {
                   <div className="border-b border-border px-4">
                     <Command.Input
                       autoFocus
+                      value={query}
+                      onValueChange={setQuery}
                       placeholder="Search sections, actions..."
                       className="h-12 w-full bg-transparent text-sm text-text placeholder:text-text-subtle focus:outline-none"
                     />
@@ -131,6 +137,54 @@ export function CommandPalette() {
                           {item.label}
                         </Command.Item>
                       ))}
+                    </Command.Group>
+
+                    <Command.Group
+                      heading="AI"
+                      className="px-1 pb-2 pt-1 text-[11px] uppercase tracking-wider text-text-subtle"
+                    >
+                      <Command.Item
+                        onSelect={() => {
+                          close();
+                          dispatch(askAI());
+                        }}
+                        className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm text-text-muted aria-selected:bg-surface-2 aria-selected:text-text"
+                      >
+                        <Sparkles className="h-4 w-4" />
+                        Ask AI about Vishnu
+                      </Command.Item>
+
+                      {CHIP_QUESTIONS.map((q) => (
+                        <Command.Item
+                          key={q}
+                          onSelect={() => {
+                            close();
+                            dispatch(askAI(q));
+                          }}
+                          className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm text-text-muted aria-selected:bg-surface-2 aria-selected:text-text"
+                        >
+                          <MessageCircle className="h-4 w-4" />
+                          {q}
+                        </Command.Item>
+                      ))}
+
+                      {/* `value={query}` always matches the filter, so a free-typed
+                          question never dead-ends on "No results found". */}
+                      {query.trim() && (
+                        <Command.Item
+                          value={query}
+                          onSelect={() => {
+                            const asked = query.trim();
+                            close();
+                            setQuery('');
+                            dispatch(askAI(asked));
+                          }}
+                          className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary aria-selected:bg-surface-2"
+                        >
+                          <Sparkles className="h-4 w-4" />
+                          Ask the AI: &ldquo;{query.trim()}&rdquo;
+                        </Command.Item>
+                      )}
                     </Command.Group>
 
                     <Command.Group

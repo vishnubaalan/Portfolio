@@ -1,12 +1,13 @@
 import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText, Mail } from 'lucide-react';
+import { ArrowRight, FileText, Mail, Sparkles } from 'lucide-react';
 import { MagneticButton } from '../../components/common/MagneticButton';
 import { useTypingCycle } from '../../hooks/useTypingCycle';
 import { TYPING_WORDS, TAGLINE, PITCH } from '../../constants';
 import { scrollToSection } from '../../hooks/useLenis';
 import { useAppDispatch } from '../../hooks/redux';
 import { setResumePreviewOpen } from '../../store/slices/uiSlice';
+import { askAI } from '../../store/slices/chatSlice';
 import { HeroBackground } from './HeroBackground';
 
 const AICore = lazy(() =>
@@ -92,6 +93,14 @@ export function Hero() {
             >
               <Mail className="h-4 w-4" />
               Contact
+            </MagneticButton>
+            {/* Ghost styling on purpose — it must never outrank View Projects. */}
+            <MagneticButton
+              onClick={() => dispatch(askAI())}
+              className="text-text-muted hover:text-primary"
+            >
+              <Sparkles className="h-4 w-4" />
+              Ask my AI
             </MagneticButton>
           </motion.div>
         </motion.div>

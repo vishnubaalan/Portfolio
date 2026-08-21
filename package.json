@@ -38,6 +38,7 @@
     "react-hook-form": "^7.82.0",
     "react-redux": "^9.3.0",
     "react-router-dom": "^6.30.4",
+    "rrweb": "^2.1.1",
     "tailwind-merge": "^2.6.1",
     "three": "^0.170.0",
     "zod": "^3.25.76"

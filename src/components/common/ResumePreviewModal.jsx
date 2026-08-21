@@ -5,6 +5,7 @@ import { Download, X, ExternalLink } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setResumePreviewOpen } from '../../store/slices/uiSlice';
 import { RESUME_URL } from '../../constants';
+import { EVENTS, track } from '../../services/replay';
 
 const RESUME_FILENAME = 'Vishnu-Baalan-Resume.pdf';
 
@@ -58,6 +59,7 @@ export function ResumePreviewModal() {
                       href={RESUME_URL}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => track(EVENTS.RESUME_PREVIEW)}
                       className="hidden items-center gap-1.5 rounded-lg border border-border bg-bg/40 px-3 py-1.5 text-xs font-medium text-text-muted transition-colors hover:border-primary hover:text-text sm:inline-flex"
                       title="Open in new tab"
                     >
@@ -67,6 +69,7 @@ export function ResumePreviewModal() {
                     <a
                       href={RESUME_URL}
                       download={RESUME_FILENAME}
+                      onClick={() => track(EVENTS.RESUME_DOWNLOAD)}
                       className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-medium text-text-inverse shadow-glow-primary transition-colors hover:bg-primary-hover"
                     >
                       <Download className="h-3.5 w-3.5" />

@@ -23,6 +23,7 @@ import {
 import { fetchQuota, streamChat } from '../services/aiChatService';
 import { FAQ_MISS, matchFaq } from '../data/ai/faq';
 import { clearHistory, saveHistory, saveQuota } from '../utils/chatStorage';
+import { EVENTS, track } from '../services/replay';
 
 /** Sent to the model; longer threads cost tokens without improving answers. */
 const HISTORY_TURNS = 8;
@@ -91,6 +92,9 @@ export function useAIChat() {
       const text = String(rawText || '').trim().slice(0, MAX_INPUT_CHARS);
       if (!text || status === 'streaming') return;
 
+      // The question itself is never sent to analytics — only that one was
+      // asked, and how long it was.
+      track(EVENTS.CHAT_QUESTION, { length: text.length });
       dispatch(addMessage({ role: 'user', content: text }));
 
       // Out of questions, or no backend at all — answer offline, spend nothing.

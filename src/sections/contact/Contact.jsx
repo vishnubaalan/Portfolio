@@ -25,6 +25,7 @@ import { setStatus, setError, reset } from '../../store/slices/contactSlice';
 import { setResumePreviewOpen } from '../../store/slices/uiSlice';
 import { EMAILJS, OFFERINGS } from '../../constants';
 import { SOCIAL_LINKS, CONTACT_EMAIL, GMAIL_COMPOSE_URL } from '../../data/links';
+import { EVENTS, track } from '../../services/replay';
 import { cn } from '../../utils/cn';
 
 const schema = z.object({
@@ -73,6 +74,9 @@ export function Contact() {
         { publicKey: EMAILJS.publicKey },
       );
       dispatch(setStatus('success'));
+      // The highest-value event this site can produce, so it is tracked on
+      // success only — a failed send is not a lead.
+      track(EVENTS.CONTACT_SUBMIT);
       resetForm();
       setTimeout(() => dispatch(reset()), 4000);
     } catch (e) {
@@ -275,7 +279,10 @@ const Input = forwardRef(function Input({ label, error, ...rest }, ref) {
       <Label.Root htmlFor={id} className="text-xs font-medium text-text-muted">
         {label}
       </Label.Root>
-      <input id={id} ref={ref} className={cn(inputBase, error && 'border-danger')} {...rest} />
+      {/* vb-mask: session replay must never capture what a visitor types
+          here. Masking is also on globally (maskAllInputs), so this is the
+          belt to that braces. */}
+      <input id={id} ref={ref} className={cn(inputBase, 'vb-mask', error && 'border-danger')} {...rest} />
       {error && <span className="text-[11px] text-danger">{error.message}</span>}
     </div>
   );
@@ -291,7 +298,7 @@ const Textarea = forwardRef(function Textarea({ label, error, ...rest }, ref) {
       <textarea
         id={id}
         ref={ref}
-        className={cn(inputBase, 'resize-none', error && 'border-danger')}
+        className={cn(inputBase, 'resize-none vb-mask', error && 'border-danger')}
         {...rest}
       />
       {error && <span className="text-[11px] text-danger">{error.message}</span>}

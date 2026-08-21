@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { MessageCircle, Sparkles } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { markHintShown, setChatOpen } from '../../store/slices/chatSlice';
+import { EVENTS, track } from '../../services/replay';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { saveFlags } from '../../utils/chatStorage';
@@ -49,7 +50,10 @@ export function AIChatLauncher({ variant = 'fab', className }) {
     };
   }, [variant, visible, flags, isMobile, reduced, dispatch]);
 
-  const openChat = () => dispatch(setChatOpen(true));
+  const openChat = () => {
+    track(EVENTS.CHAT_OPEN);
+    dispatch(setChatOpen(true));
+  };
 
   if (variant === 'pill') {
     return (

@@ -54,6 +54,8 @@ export function ChatComposer({ onSend, onStop, streaming, remaining, showQuota, 
   return (
     <div className="border-t border-border bg-surface/80 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3">
       <div className="flex items-end gap-2 rounded-2xl border border-border bg-bg/60 px-3 py-2 focus-within:border-primary/60">
+        {/* vb-mask: questions typed here are never captured by session replay.
+            The endpoint sees them; the recording must not. */}
         <textarea
           ref={textareaRef}
           rows={1}
@@ -63,7 +65,7 @@ export function ChatComposer({ onSend, onStop, streaming, remaining, showQuota, 
           onKeyDown={onKeyDown}
           placeholder="Ask about my stack, projects, work…"
           aria-label="Ask Vishnu's AI a question"
-          className="flex-1 resize-none bg-transparent py-1 text-[13px] text-text placeholder:text-text-subtle focus:outline-none"
+          className="vb-mask flex-1 resize-none bg-transparent py-1 text-[13px] text-text placeholder:text-text-subtle focus:outline-none"
         />
 
         {streaming ? (
